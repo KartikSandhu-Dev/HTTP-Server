@@ -4,10 +4,11 @@
 #include "common.h"
 
 typedef struct ServerConfig {
-	const char *ip;
-	uint16_t port;
+	char *port;
 	int backlog; 
 } ServerConfig;
+
+int server_init(ServerConfig *config);
 
 int server_start(ServerConfig *config);
 
