@@ -1,0 +1,26 @@
+# Build output
+build/
+
+# Executable
+HttpServer
+*.exe
+
+# Object files
+*.o
+
+# Static/Dynamic libraries
+*.a
+*.so
+*.dll
+*.dylib
+
+# Debug symbols
+*.pdb
+
+# Core dumps
+core
+core.*
+vgcore.*
+
+# Editor
+compile_flags.txt
