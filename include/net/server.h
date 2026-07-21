@@ -1,15 +1,12 @@
 #ifndef SERVER_H
 #define SERVER_H
 
-#include "common.h"
-
 typedef struct ServerConfig {
+	char *ip;
 	char *port;
 	int backlog; 
 } ServerConfig;
 
-int server_init(ServerConfig *config);
-
-int server_start(ServerConfig *config);
+int server_start(const ServerConfig *config);
 
 #endif

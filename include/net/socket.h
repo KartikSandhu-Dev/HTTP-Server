@@ -3,8 +3,7 @@
 
 #include "net/server.h"
 
-int socket_create_server(ServerConfig *config);
-int accept_client();
-void close_socket();
+int socket_create_server(const ServerConfig *config);
+int accept_client(int server_fd);
 
 #endif

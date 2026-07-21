@@ -1,0 +1,56 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-Ilexer",
+      "-Iparser",
+      "-pthread",
+      "-c",
+      "-o",
+      "build/net/server.o",
+      "src/net/server.c"
+    ],
+    "directory": "/home/dome/HttpServer",
+    "file": "/home/dome/HttpServer/src/net/server.c",
+    "output": "/home/dome/HttpServer/build/net/server.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-Ilexer",
+      "-Iparser",
+      "-pthread",
+      "-c",
+      "-o",
+      "build/net/socket.o",
+      "src/net/socket.c"
+    ],
+    "directory": "/home/dome/HttpServer",
+    "file": "/home/dome/HttpServer/src/net/socket.c",
+    "output": "/home/dome/HttpServer/build/net/socket.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-Ilexer",
+      "-Iparser",
+      "-pthread",
+      "-c",
+      "-o",
+      "build/main.o",
+      "src/main.c"
+    ],
+    "directory": "/home/dome/HttpServer",
+    "file": "/home/dome/HttpServer/src/main.c",
+    "output": "/home/dome/HttpServer/build/main.o"
+  }
+]
