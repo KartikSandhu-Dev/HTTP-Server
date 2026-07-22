@@ -2,14 +2,16 @@
 #include "net/server.h"
 #include "common.h"
 
+#include <netinet/in.h>
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <arpa/inet.h>
 #include <netdb.h>
 #include <unistd.h>
 
 int socket_create_server(const ServerConfig *config) {
-	int server; // the server socket
+	int server = -1; // the server socket
 
 	int status;
 	struct addrinfo hints;
@@ -22,8 +24,8 @@ int socket_create_server(const ServerConfig *config) {
 
 	status = getaddrinfo(config->ip, config->port, &hints, &servinfo);
 	if(status != 0) {
-		perror("getaddrinfo");
-		exit(1);
+		fprintf(stderr, "%s\n", gai_strerror(status));
+		exit(EXIT_FAILURE);
 	}
 
 	next = servinfo;
@@ -34,6 +36,9 @@ int socket_create_server(const ServerConfig *config) {
 			perror("socket");
 			continue;
 		}
+
+		int yes = 1;
+		setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(yes));
 
 		int bind_status = bind(sock, next->ai_addr, next->ai_addrlen);
 		if(bind_status < 0) {
@@ -47,10 +52,29 @@ int socket_create_server(const ServerConfig *config) {
 		close(sock);
 	}
 
+	char host[NI_MAXHOST];
+	char service[NI_MAXSERV];
+
+	if(getnameinfo(next->ai_addr, next->ai_addrlen, 
+					host, sizeof(host),
+					service, sizeof(service),
+					NI_NUMERICHOST | NI_NUMERICSERV) == 0) {
+
+		printf("Listening on %s:%s\n", host, service);
+	}
+
+
+	if(server < 0) {
+		fprintf(stderr, "Couldnt initialise server");
+		exit(EXIT_FAILURE);
+	}
+
 	int listen_status = listen(server, config->backlog);
 	if(listen_status < 0) {
 		perror("listen");
-		exit(1);
+		close(server);
+		freeaddrinfo(servinfo);
+		exit(EXIT_FAILURE);
 	}
 
 	freeaddrinfo(servinfo);

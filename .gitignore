@@ -24,3 +24,4 @@ vgcore.*
 
 # Editor
 compile_flags.txt
+.cache
