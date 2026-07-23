@@ -2,12 +2,13 @@
 #include "net/server.h"
 #include "common.h"
 
-#include <netinet/in.h>
-#include <stdio.h>
 #include <sys/types.h>
 #include <sys/socket.h>
+
+#include <netinet/in.h>
 #include <arpa/inet.h>
 #include <netdb.h>
+
 #include <unistd.h>
 
 int socket_create_server(const ServerConfig *config) {
