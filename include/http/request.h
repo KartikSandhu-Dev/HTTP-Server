@@ -21,4 +21,6 @@ typedef struct HttpRequest {
 	size_t content_length;
 } HttpRequest;
 
+const char *http_request_header(HttpRequest *request, const char *name);
+
 #endif

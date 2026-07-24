@@ -8,5 +8,6 @@ typedef struct ServerConfig {
 } ServerConfig;
 
 int server_start(const ServerConfig *config);
+void handle_client(int client);
 
 #endif

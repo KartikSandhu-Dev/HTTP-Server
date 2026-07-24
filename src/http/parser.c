@@ -10,8 +10,6 @@ static HttpStateHandler handlers[] = {
     parse_header_name,
     parse_header_value,
     parse_body,
-    parse_done,
-    parse_error,
 };
 
 char current(HttpParser *hp) {
@@ -144,10 +142,10 @@ HttpParseResult parse_header_value(HttpParser *hp, HttpRequest *request) {
 	}
 
 	if(match_crlf(hp)) {
-		change_state(hp, request, HTTP_STATE_HEADER_NAME);
-
 		if(request->header_count >= MAX_HEADERS)
 			return report_error(hp);
+
+		change_state(hp, request, HTTP_STATE_HEADER_NAME);
 
 		if(strcmp(request->headers[request->header_count].name, CONTENT_LENGTH) == 0) {
 			request->content_length = strtoul(request->headers[request->header_count].value, NULL, 10);
@@ -163,6 +161,7 @@ HttpParseResult parse_header_value(HttpParser *hp, HttpRequest *request) {
 HttpParseResult parse_body(HttpParser *hp, HttpRequest *request) {
 	size_t content_length = request->content_length;
 
+	// if the buffer we have dont have enough characters wait for more
 	if(content_length > hp->buffer_len - hp->pos)
 		return HTTP_RESULT_NEED_MORE;
 
@@ -172,16 +171,6 @@ HttpParseResult parse_body(HttpParser *hp, HttpRequest *request) {
 	hp->state = HTTP_STATE_DONE;
 
 	return HTTP_RESULT_OK;
-}
-
-HttpParseResult parse_done(HttpParser *hp, HttpRequest *request) {
-	change_state(hp, request, HTTP_STATE_DONE);
-	return HTTP_RESULT_OK;
-}
-
-HttpParseResult parse_error(HttpParser *hp, HttpRequest *request) {
-	change_state(hp, request, HTTP_STATE_ERROR);
-	return HTTP_RESULT_ERROR;
 }
 
 void change_state(HttpParser *hp, HttpRequest *request, HttpState new_state) {

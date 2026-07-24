@@ -45,8 +45,6 @@ HttpParseResult parse_version(HttpParser *hp, HttpRequest *request);
 HttpParseResult parse_header_name(HttpParser *hp, HttpRequest *request);
 HttpParseResult parse_header_value(HttpParser *hp, HttpRequest *request);
 HttpParseResult parse_body(HttpParser *hp, HttpRequest *request);
-HttpParseResult parse_done(HttpParser *hp, HttpRequest *request);
-HttpParseResult parse_error(HttpParser *hp, HttpRequest *request);
 
 HttpParseResult http_parser_parse(HttpParser *hp, HttpRequest *request, char *buffer, size_t len);
 

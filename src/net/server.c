@@ -1,29 +1,76 @@
 #include "net/server.h"
+#include "http/connection.h"
 #include "net/socket.h"
 
-#include "http/request.h"
 #include "http/parser.h"
 #include "common.h"
 
 #include <netinet/in.h>
 #include <netinet/tcp.h>
+#include <stdio.h>
 #include <sys/socket.h>
 
 int server_start(const ServerConfig *config) {
 	int server = socket_create_server(config);
 
 	while(1) {
-		char client_buffer[1024];
-
 		int client = accept_client(server);
 		if(client < 0) continue;
 
 		int yes = 1;
 		setsockopt(client, IPPROTO_TCP, TCP_NODELAY, &yes, sizeof(yes));
 
-		int bytes = recv(client, client_buffer, 1024, 0);
-		client_buffer[bytes] = '\0';
-
-		printf("%s", client_buffer);
+		handle_client(client);
 	}
+}
+
+void handle_client(int client) {
+	HttpConnection conn = {0};
+	memset(&conn, 0, sizeof(conn));
+
+	conn.client = client;
+
+	http_parser_init(&conn.parse, &conn.request);;
+
+	while(1) {
+		if(conn.buffer_len >= sizeof(conn.buffer))
+			return;
+
+		int bytes = recv(
+			client, 
+			conn.buffer + conn.buffer_len, 
+			sizeof(conn.buffer) - conn.buffer_len - 1, 
+			0
+		);
+
+		if(bytes <= 0) return;
+
+		conn.buffer_len+=bytes;
+		conn.buffer[conn.buffer_len] = '\0';
+
+		HttpParseResult result = http_parser_parse(
+			&conn.parse,
+			&conn.request,
+			conn.buffer,
+			conn.buffer_len
+		);
+
+		switch (result) {
+			case HTTP_RESULT_OK:
+				printf("%s %s %s\n", 
+					conn.request.method,
+					conn.request.path,
+					conn.request.version
+				);
+				for(size_t i = 0; i < conn.request.header_count; i++) {
+					printf("%s: %s\n", conn.request.headers[i].name, conn.request.headers[i].value);
+				}
+				printf("%.*s\n", (int)conn.request.content_length, conn.request.body);
+				break;
+			case HTTP_RESULT_NEED_MORE:
+				continue;
+			case HTTP_RESULT_ERROR:
+				return;
+			}
+        }
 }
