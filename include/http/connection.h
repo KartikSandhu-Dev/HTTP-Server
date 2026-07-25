@@ -4,6 +4,7 @@
 #include "http/parser.h"
 #include "http/request.h"
 #include "config.h"
+#include "http/response.h"
 
 typedef struct HttpConnection {
 	int client;
@@ -13,6 +14,8 @@ typedef struct HttpConnection {
 
 	HttpParser parse;
 	HttpRequest request;
+	HttpResponse response;
+	
 } HttpConnection;
 
 #endif

@@ -25,5 +25,6 @@ void http_response_status(HttpResponse *response, int status);
 void http_response_header(HttpResponse *response, const char *name, const char *value);
 void http_response_body(HttpResponse *response, const char *body, size_t len);
 
+void http_response_send(int client, HttpResponse *response);
 
 #endif

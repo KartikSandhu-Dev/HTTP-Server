@@ -10,11 +10,29 @@
       "-pthread",
       "-c",
       "-o",
-      "build/http/response.o",
-      "src/http/response.c"
+      "build/app/router.o",
+      "src/app/router.c"
     ],
     "directory": "/home/dome/HttpServer",
-    "file": "/home/dome/HttpServer/src/http/response.c",
-    "output": "/home/dome/HttpServer/build/http/response.o"
+    "file": "/home/dome/HttpServer/src/app/router.c",
+    "output": "/home/dome/HttpServer/build/app/router.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-Ilexer",
+      "-Iparser",
+      "-pthread",
+      "-c",
+      "-o",
+      "build/main.o",
+      "src/main.c"
+    ],
+    "directory": "/home/dome/HttpServer",
+    "file": "/home/dome/HttpServer/src/main.c",
+    "output": "/home/dome/HttpServer/build/main.o"
   }
 ]
