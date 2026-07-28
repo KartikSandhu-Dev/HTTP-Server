@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My C HTTP Server</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, sans-serif;
+            background: #111827;
+            color: #f9fafb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            background: #1f2937;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.4);
+            text-align: center;
+            max-width: 700px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #60a5fa;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: #d1d5db;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        code {
+            background: #374151;
+            padding: .2rem .45rem;
+            border-radius: 6px;
+            color: #fbbf24;
+        }
+
+        .status {
+            margin-top: 2rem;
+            display: inline-block;
+            padding: .5rem 1rem;
+            border-radius: 999px;
+            background: #16a34a;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>🚀 It Works!</h1>
+
+    <p>
+        This page was served by your
+        <strong>HTTP server written in C</strong>.
+    </p>
+
+    <p>
+        If you're seeing this page in your browser,
+        your request parser, router, response serializer,
+        and socket code are all working together.
+    </p>
+
+    <p>
+        Request path:
+        <code>/</code>
+    </p>
+
+    <div class="status">
+        HTTP 200 OK
+    </div>
+</div>
+
+</body>
+</html>

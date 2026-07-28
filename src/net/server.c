@@ -1,4 +1,5 @@
 #include "net/server.h"
+#include "app/router.h"
 #include "http/connection.h"
 #include "http/response.h"
 #include "net/socket.h"
@@ -59,30 +60,9 @@ void handle_client(int client) {
 		switch (result) {
 			case HTTP_RESULT_OK:
 				http_response_init(&conn.response);
-				// -- need a router here
-				http_response_status(&conn.response, 200);
+				
+				router_handle(&conn.request, &conn.response);
 
-				http_response_header(
-					&conn.response,
-					"Content-Type",
-					"text/html"
-					);
-
-				static const char html[] =
-					"<!DOCTYPE html>"
-					"<html>"
-					"<head><title>My Server</title></head>"
-					"<body>"
-					"<h1>Hello, World!</h1>"
-					"</body>"
-					"</html>";
-
-				http_response_body(
-					&conn.response,
-					html,
-					sizeof(html) - 1
-				);
-				// ----
 				http_response_send(client, &conn.response);
 
 				printf("%s %s %s\n", 

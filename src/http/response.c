@@ -2,6 +2,7 @@
 #include "common.h"
 #include "config.h"
 #include <stdio.h>
+#include <sys/mman.h>
 #include <sys/socket.h>
 
 /* EXAMPLE HTTP RESPONSE
@@ -107,4 +108,7 @@ void http_response_send(int client, HttpResponse *response) {
 	send_content_length(client, response);
 	send_blank_line(client);
 	send_body(client, response);
+	
+	// freeing the body mmap
+	munmap((void *)response->body, response->body_length);
 }
