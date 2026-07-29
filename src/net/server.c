@@ -12,6 +12,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
+// works only for one client right now
 int server_start(const ServerConfig *config) {
 	int server = socket_create_server(config);
 
@@ -26,6 +27,7 @@ int server_start(const ServerConfig *config) {
 	}
 }
 
+// works only for one response right now 
 void handle_client(int client) {
 	HttpConnection conn = {0};
 	memset(&conn, 0, sizeof(conn));
