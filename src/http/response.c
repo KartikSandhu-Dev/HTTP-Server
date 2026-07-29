@@ -88,7 +88,7 @@ static void send_content_length(int client, HttpResponse *response) {
 
 	snprintf(buffer, sizeof(buffer), 
 		"%s: %zu\r\n", 
-		CONTENT_LENGTH, response->body_length
+		HTTP_HEADER_CONTENT_TYPE, response->body_length
 	);
 
 	send(client, buffer, strlen(buffer), 0);

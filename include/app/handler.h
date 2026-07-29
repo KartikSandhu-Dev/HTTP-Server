@@ -5,9 +5,10 @@
 #include "http/response.h"
 #include <stdbool.h>
 
-void handle_response_file(HttpResponse *response, const char *path);
+const char *http_content_type(const char *path);
+bool handle_response_file(HttpResponse *response, const char *path);
 
-void handle_home(HttpRequest *request, HttpResponse *response);
+bool handle_file(HttpRequest *request, HttpResponse *response, const char *path);
 
 void handle_not_found(HttpRequest *request, HttpResponse *response);
 

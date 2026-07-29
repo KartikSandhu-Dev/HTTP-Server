@@ -147,7 +147,7 @@ HttpParseResult parse_header_value(HttpParser *hp, HttpRequest *request) {
 
 		change_state(hp, request, HTTP_STATE_HEADER_NAME);
 
-		if(strcmp(request->headers[request->header_count].name, CONTENT_LENGTH) == 0) {
+		if(strcmp(request->headers[request->header_count].name, HTTP_HEADER_CONTENT_TYPE) == 0) {
 			request->content_length = strtoul(request->headers[request->header_count].value, NULL, 10);
 		}
 

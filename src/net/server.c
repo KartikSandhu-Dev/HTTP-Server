@@ -9,8 +9,8 @@
 
 #include <netinet/in.h>
 #include <netinet/tcp.h>
-#include <stdio.h>
 #include <sys/socket.h>
+#include <unistd.h>
 
 int server_start(const ServerConfig *config) {
 	int server = socket_create_server(config);
@@ -74,7 +74,8 @@ void handle_client(int client) {
 					printf("%s: %s\n", conn.request.headers[i].name, conn.request.headers[i].value);
 				}
 				printf("%.*s\n", (int)conn.request.content_length, conn.request.body);
-
+				
+				close(client);
 				return;
 			case HTTP_RESULT_NEED_MORE:
 				continue;

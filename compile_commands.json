@@ -1,1 +1,146 @@
-[]
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-Ilexer",
+      "-Iparser",
+      "-pthread",
+      "-c",
+      "-o",
+      "build/net/server.o",
+      "src/net/server.c"
+    ],
+    "directory": "/home/dome/HttpServer",
+    "file": "/home/dome/HttpServer/src/net/server.c",
+    "output": "/home/dome/HttpServer/build/net/server.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-Ilexer",
+      "-Iparser",
+      "-pthread",
+      "-c",
+      "-o",
+      "build/net/socket.o",
+      "src/net/socket.c"
+    ],
+    "directory": "/home/dome/HttpServer",
+    "file": "/home/dome/HttpServer/src/net/socket.c",
+    "output": "/home/dome/HttpServer/build/net/socket.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-Ilexer",
+      "-Iparser",
+      "-pthread",
+      "-c",
+      "-o",
+      "build/http/parser.o",
+      "src/http/parser.c"
+    ],
+    "directory": "/home/dome/HttpServer",
+    "file": "/home/dome/HttpServer/src/http/parser.c",
+    "output": "/home/dome/HttpServer/build/http/parser.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-Ilexer",
+      "-Iparser",
+      "-pthread",
+      "-c",
+      "-o",
+      "build/http/response.o",
+      "src/http/response.c"
+    ],
+    "directory": "/home/dome/HttpServer",
+    "file": "/home/dome/HttpServer/src/http/response.c",
+    "output": "/home/dome/HttpServer/build/http/response.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-Ilexer",
+      "-Iparser",
+      "-pthread",
+      "-c",
+      "-o",
+      "build/http/request.o",
+      "src/http/request.c"
+    ],
+    "directory": "/home/dome/HttpServer",
+    "file": "/home/dome/HttpServer/src/http/request.c",
+    "output": "/home/dome/HttpServer/build/http/request.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-Ilexer",
+      "-Iparser",
+      "-pthread",
+      "-c",
+      "-o",
+      "build/app/handler.o",
+      "src/app/handler.c"
+    ],
+    "directory": "/home/dome/HttpServer",
+    "file": "/home/dome/HttpServer/src/app/handler.c",
+    "output": "/home/dome/HttpServer/build/app/handler.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-Ilexer",
+      "-Iparser",
+      "-pthread",
+      "-c",
+      "-o",
+      "build/app/router.o",
+      "src/app/router.c"
+    ],
+    "directory": "/home/dome/HttpServer",
+    "file": "/home/dome/HttpServer/src/app/router.c",
+    "output": "/home/dome/HttpServer/build/app/router.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-Ilexer",
+      "-Iparser",
+      "-pthread",
+      "-c",
+      "-o",
+      "build/main.o",
+      "src/main.c"
+    ],
+    "directory": "/home/dome/HttpServer",
+    "file": "/home/dome/HttpServer/src/main.c",
+    "output": "/home/dome/HttpServer/build/main.o"
+  }
+]
