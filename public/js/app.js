@@ -1,8 +1,6 @@
-const btn = document.getElementById("btn");
+console.log("JavaScript loaded successfully.");
 
-if (btn) {
-    btn.addEventListener("click", () => {
-        document.getElementById("message").textContent =
-            "JavaScript is working!";
-    });
-}
+document.body.insertAdjacentHTML(
+    "beforeend",
+    "<p>JS Loaded ✔</p>"
+);

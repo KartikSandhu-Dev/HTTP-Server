@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1>JSON API</h1>
+
+<p>
+Tests JavaScript fetch() requests.
+</p>
+
+<button onclick="loadTime()">
+
+Request /api/time
+
+</button>
+
+<pre id="output">
+
+Waiting...
+
+</pre>
+
+</div>
+
+</div>
+
+<script>
+
+async function loadTime(){
+
+const r = await fetch("/api/time");
+
+document.getElementById("output").textContent =
+await r.text();
+
+}
+
+</script>
+
+</body>
+</html>
