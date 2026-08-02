@@ -1,1 +1,56 @@
-[]
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-Ilexer",
+      "-Iparser",
+      "-pthread",
+      "-c",
+      "-o",
+      "build/net/server.o",
+      "src/net/server.c"
+    ],
+    "directory": "/home/dome/HttpServer",
+    "file": "/home/dome/HttpServer/src/net/server.c",
+    "output": "/home/dome/HttpServer/build/net/server.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-Ilexer",
+      "-Iparser",
+      "-pthread",
+      "-c",
+      "-o",
+      "build/app/handler.o",
+      "src/app/handler.c"
+    ],
+    "directory": "/home/dome/HttpServer",
+    "file": "/home/dome/HttpServer/src/app/handler.c",
+    "output": "/home/dome/HttpServer/build/app/handler.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-Ilexer",
+      "-Iparser",
+      "-pthread",
+      "-c",
+      "-o",
+      "build/app/router.o",
+      "src/app/router.c"
+    ],
+    "directory": "/home/dome/HttpServer",
+    "file": "/home/dome/HttpServer/src/app/router.c",
+    "output": "/home/dome/HttpServer/build/app/router.o"
+  }
+]

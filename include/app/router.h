@@ -12,6 +12,6 @@ typedef struct Route {
 	RouteHandler route_handler;
 } Route;
 
-void router_handle(HttpRequest *request, HttpResponse *response);
+void router_dispatch(HttpRequest *request, HttpResponse *response);
 
 #endif

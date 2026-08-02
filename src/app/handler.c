@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
+#include <time.h>
 
 bool handle_response_file(HttpResponse *response, const char *path) {
 	int fd = open(path, O_RDONLY);
@@ -63,6 +64,140 @@ bool handle_file(HttpRequest *request, HttpResponse *response, const char *path)
 		return true;
 
 	return false;
+}
+
+void handle_login(HttpRequest *request, HttpResponse *response) {
+	http_response_status(response, 200);
+
+	http_response_header(
+		response,
+		HTTP_HEADER_CONTENT_TYPE,
+		HTTP_CONTENT_HTML
+	);
+
+	http_response_header(
+		response,
+		HTTP_HEADER_CONNECTION,
+		HTTP_CONNECTION_CLOSE
+	);
+	
+	http_response_header(
+		response,
+		HTTP_HEADER_SERVER,
+		HTTP_SERVER_NAME
+	);
+
+	char html[] =
+		"<h1>Login received</h1>";
+
+	http_response_body(
+		response,
+		html,
+		strlen(html)
+	);
+
+}
+
+void handle_search(HttpRequest *request, HttpResponse *response) {
+	http_response_status(response, 200);
+
+	http_response_header(
+		response,
+		HTTP_HEADER_CONTENT_TYPE,
+		HTTP_CONTENT_HTML
+	);
+
+	http_response_header(
+		response,
+		HTTP_HEADER_CONNECTION,
+		HTTP_CONNECTION_CLOSE
+	);
+	
+	http_response_header(
+		response,
+		HTTP_HEADER_SERVER,
+		HTTP_SERVER_NAME
+	);
+
+	char html[] = 
+		"<h1>Search Page</h1>";
+
+	http_response_body(
+		response,
+		html,
+		strlen(html)
+	);
+}
+
+void handle_time(HttpRequest *request, HttpResponse *response) {
+	http_response_status(response, 200);
+
+	char json[256];
+	time_t now = time(NULL);
+
+	snprintf(json, sizeof(json),
+		"{\"time\":\"%ld\"}",
+		now
+	);
+	
+	http_response_header(
+		response,
+		HTTP_HEADER_CONTENT_TYPE,
+		HTTP_CONTENT_HTML
+	);
+
+	http_response_header(
+		response,
+		HTTP_HEADER_CONNECTION,
+		HTTP_CONNECTION_CLOSE
+	);
+	
+	http_response_header(
+		response,
+		HTTP_HEADER_SERVER,
+		HTTP_SERVER_NAME
+	);
+
+	http_response_body(
+		response,
+		json,
+		strlen(json)
+	);
+
+}
+
+void handle_user(HttpRequest *request, HttpResponse *response) {
+	http_response_status(response, 200);
+	
+	http_response_header(
+		response,
+		HTTP_HEADER_CONTENT_TYPE,
+		HTTP_CONTENT_HTML
+	);
+
+	http_response_header(
+		response,
+		HTTP_HEADER_CONNECTION,
+		HTTP_CONNECTION_CLOSE
+	);
+	
+	http_response_header(
+		response,
+		HTTP_HEADER_SERVER,
+		HTTP_SERVER_NAME
+	);
+
+	char html[256];
+
+	snprintf(html, sizeof(html),
+		"<h1>User page %s</h1>", request->path + 7
+	);
+	
+	http_response_body(
+		response,
+		html,
+		strlen(html)
+	);
 }
 
 void handle_not_found(HttpRequest *request, HttpResponse *response) {

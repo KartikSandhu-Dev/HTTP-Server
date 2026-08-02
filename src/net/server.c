@@ -63,7 +63,7 @@ void handle_client(int client) {
 			case HTTP_RESULT_OK:
 				http_response_init(&conn.response);
 				
-				router_handle(&conn.request, &conn.response);
+				router_dispatch(&conn.request, &conn.response);
 
 				http_response_send(client, &conn.response);
 
